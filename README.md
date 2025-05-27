@@ -236,7 +236,7 @@ kubectl logs  nginx-85498f7b8d-bpwsx
  kubectl port-forward svc/nginx-service 8080:80
 ```
 ![alt text](img/image-17.png)
-![alt text](img/image-17.png)
+
 ### Тестирование через Ingress:
 
 Получите внешний IP адрес Ingress
@@ -247,5 +247,5 @@ kubectl get ingress nginx-ingress
 
 
 
-
-[text](nginx-fixed.yaml)
+# Новый исправленый конфиг 
+[nginx-fixed.yaml](nginx-fixed.yaml)
