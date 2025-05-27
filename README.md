@@ -249,3 +249,6 @@ kubectl get ingress nginx-ingress
 
 # Новый исправленый конфиг 
 [nginx-fixed.yaml](nginx-fixed.yaml)
+
+
+![alt text](image.png)
