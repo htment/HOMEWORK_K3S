@@ -26,7 +26,7 @@ kubectl get pods -n kube-system
  kubectl get pods -A
 ```
 
-![alt text](image.png)
+![alt text](img/image.png)
 
 ## Deployment и Service для Redis
 https://github.com/netology-code/sdvps-homeworks/blob/main/6-05.md
@@ -75,20 +75,20 @@ spec:
 kubectl apply -f redis-deployment.yaml
 ```
 
-![alt text](image-1.png)    
+![alt text](img/image-1.png)    
 
 
 Проверим статус Pod'а:
 ```
 kubectl get pods
 ```
-![alt text](image-2.png)
+![alt text](img/image-2.png)
 
 Проверим Service
 ```
 kubectl get svc
 ```
-![alt text](image-3.png)
+![alt text](img/image-3.png)
 
 Проверим логи Redis:
 
@@ -97,7 +97,7 @@ kubectl logs redis-54457d549d-vg4dg  # (подставим имя Pod из `kube
 
 ```
 
-![alt text](image-4.png)
+![alt text](img/image-4.png)
 
 
 
@@ -111,7 +111,7 @@ exec - выполняет команду в контейнере
 redis-54457d549d-vg4dg - имя вашего Pod
 -- redis-cli - команда для запуска Redis CLI внутри контейнера
 
-![alt text](image-5.png)
+![alt text](img/image-5.png)
 
 
 
@@ -122,23 +122,23 @@ SET test "Hello Kubernetes"
 GET test
 ```
 
-![alt text](image-6.png)
+![alt text](img/image-6.png)
 
 
 ### Проверить процессы в контейнере
 kubectl exec redis-54457d549d-vg4dg -- ps aux
 
-![alt text](image-7.png)
+![alt text](img/image-7.png)
 
 ### Посмотреть логи Redis
 kubectl logs redis-54457d549d-vg4dg
 
-![alt text](image-8.png)
+![alt text](img/image-8.png)
 
 ### Проверить переменные окружения
 kubectl exec redis-54457d549d-vg4dg -- env
 
-![alt text](image-9.png)
+![alt text](img/image-9.png)
 
 
 ### Проброс порта для отладки:
@@ -150,7 +150,7 @@ kubectl port-forward redis-54457d549d-vg4dg 6379:6379
 ```
 kubectl delete pod redis-54457d549d-vg4dg
 ```
-![img](image-10.png)
+![img](img/image-10.png)
 
 
 #### Если нужно полностью пересоздать Deployment
@@ -181,7 +181,7 @@ kubectl rollout restart deployment redis
 ```
 kubectl rollout history deployment redis
 ```
-![alt text](image-11.png)
+![alt text](img/image-11.png)
 
 
 Создадим файл nginx-k8s.yaml со следующим содержимым:
@@ -191,17 +191,61 @@ kubectl rollout history deployment redis
 kubectl apply -f nginx-k8s.yaml
 ```
 
-![alt text](image-12.png)
+![alt text](img/image-12.png)
 
 
 Проверим ConfigMap:
 ```
  kubectl describe configmap nginx-config
 ```
-![alt text](image-13.png)
+![alt text](img/image-13.png)
+
+Проверим Pod:
 
 ```
 kubectl get pods -l app=nginx
 
 ```
-![alt text](image-14.png)
+![alt text](img/image-14.png)
+
+
+Проверим Service
+```
+kubectl get svc nginx-service
+```
+
+![alt text](img/image-15.png)
+
+
+### Проверим Ingress:
+```
+kubectl get ingress nginx-ingress
+```
+![alt text](img/image-16.png)
+
+### Проверим логи Nginx
+
+```
+kubectl logs  nginx-85498f7b8d-bpwsx
+
+```
+
+### Тестирование через port-forward
+
+```
+ kubectl port-forward svc/nginx-service 8080:80
+```
+![alt text](img/image-17.png)
+![alt text](img/image-17.png)
+### Тестирование через Ingress:
+
+Получите внешний IP адрес Ingress
+```
+kubectl get ingress nginx-ingress
+```
+![alt text](img/image-18.png)
+
+
+
+
+[text](nginx-fixed.yaml)
