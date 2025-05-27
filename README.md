@@ -106,9 +106,13 @@ kubectl exec -it <pod-name> -- redis-cli
 kubectl exec -it redis-54457d549d-vg4dg -- redis-cli
 ```
 Эта команда:
+
 exec - выполняет команду в контейнере
+
 -it - делает сессию интерактивной
+
 redis-54457d549d-vg4dg - имя вашего Pod
+
 -- redis-cli - команда для запуска Redis CLI внутри контейнера
 
 ![alt text](img/image-5.png)
